@@ -1,29 +1,8 @@
 spring:
   application:
     name: gateway-server
+  profiles:
+    active: dev
+  config:
+    import: configserver:${CONFIG_URI:http://localhost:8989}
 
-  cloud:
-    gateway:
-      server:
-        webflux:
-          routes:
-            - id: product-service-route
-              uri: lb://product-service
-              predicates:
-                - Path=/api/v1/products/**
-            - id: payment-service-route
-              uri: lb://payment-service
-              predicates:
-                - Path=/api/v1/payments/**
-            - id: cart-service-route
-              uri: lb://cart-service
-              predicates:
-                - Path=/api/v1/carts/**
-eureka:
-  client:
-    fetch-registry: true
-    register-with-eureka: true
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
-server:
-  port: 8888
