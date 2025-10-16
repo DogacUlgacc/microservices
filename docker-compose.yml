@@ -1,0 +1,19 @@
+services:
+  config-server:
+    image: dogacu/turkcell-45-config-server
+    ports:
+      - "8989:8989"
+
+  discovery-server:
+    image: dogacu/tcell-discovery-server
+    ports:
+      - "8761:8761"
+
+  gateway-server:
+    image: dogacu/tcell-45-gateway-server
+    ports:
+      - "8888:8888"
+    depends_on:
+      - config-server
+    environment:
+      - CONFIG_URI=http://config-server:8989
