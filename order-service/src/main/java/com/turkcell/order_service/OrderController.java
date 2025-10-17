@@ -17,7 +17,7 @@ public class OrderController {
 
     @GetMapping
     public String sayHi() {
-        String responsFromProductService = productClient.get();
-        return "Hello World from Order Service çalıştı orderserviceden gelen cevap : " + responsFromProductService;
+        String responsFromProductServiceFromProductService = productClient.get("dogac");
+        return "Hello World from Order Service çalıştı orderserviceden gelen cevap : " + responsFromProductServiceFromProductService;
     }
 }
